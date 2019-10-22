@@ -13,6 +13,8 @@ import Home from './views/Home'
 import Login from './views/Login'
 import CityList from './views/CityList'
 import Map from './views/Map'
+// 房源详细信息
+import Detail from './views/Detail'
 
 function App() {
   return (
@@ -23,6 +25,7 @@ function App() {
           <Route path="/login" component={Login} />
           <Route path="/citylist" component={CityList} />
           <Route path="/map" component={Map} />
+          <Route path="/detail/:id" component={Detail} />
           <Redirect exact from="/" to="/home" />
         </Switch>
       </div>

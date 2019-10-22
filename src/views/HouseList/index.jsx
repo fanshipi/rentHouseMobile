@@ -35,6 +35,7 @@ export default class Index extends Component {
 
     this.getHousesData()
   }
+  // 获取房源数据
   getHousesData = async (start = 1, end = 20) => {
     Toast.loading('拼命加载中...', 0)
     let res = await this.$axios.get('houses', {
@@ -61,6 +62,7 @@ export default class Index extends Component {
     })
     // console.log(this.state.houseList)
   }
+  // 渲染房源信息的每一行
   rowRenderer = ({ key, index, style }) => {
     const { houseList } = this.state
     // console.log(houseList)
@@ -74,7 +76,7 @@ export default class Index extends Component {
     }
     return (
       <div key={key} style={style}>
-        <HouseItem {...item} />
+        <HouseItem {...item}/>
       </div>
     )
   }
@@ -107,7 +109,7 @@ export default class Index extends Component {
       resolve()
     })
   }
-
+// 渲染房源列表
   renderHouseList = () => {
     const { count } = this.state
     // console.log(count)

@@ -3,10 +3,11 @@ import styles from './index.module.scss'
 import { BASEURL } from '../../utils/url'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
+import {withRouter} from 'react-router-dom'
 
-function HouseItem({ houseCode, houseImg, title, desc, tags, price }) {
+function HouseItem({ houseCode, houseImg, title, desc, tags, price,history }) {
   return (
-    <div className={styles.house}>
+    <div className={styles.house} onClick={()=>history.push(`/detail/${houseCode}`)}>
       <div className={styles.imgWrap}>
         <img className={styles.img} src={`${BASEURL}${houseImg}`} alt="" />
       </div>
@@ -39,4 +40,4 @@ HouseItem.propTypes = {
   price: PropTypes.number.isRequired
 }
 
-export default HouseItem
+export default withRouter(HouseItem)
