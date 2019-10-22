@@ -1,0 +1,51 @@
+.cityList {
+  height: 100%;
+}
+.content {
+  padding: 15px;
+  font-size: 16px;
+  .title {
+    font-size: 14px;
+    color: #333;
+    padding: 10px 15px;
+    font-weight: 600;
+  }
+  .name {
+    width: 100%;
+    height: 50px;
+    padding: 0 15px;
+    line-height: 50px;
+    border-bottom: 1px solid #eeeeee;
+    font-size: 16px;
+    color: #333;
+    background: #fff;
+    cursor: pointer;
+  }
+}
+
+.rightIndex {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 10%;
+  height: 90%;
+  z-index: 99;
+  right: 5px;
+  padding-top: 20px;
+  box-sizing: border-box;
+  text-align: center;
+}
+.words {
+ height:9%;
+}
+
+.indexActive {
+  // color: #fff;
+  background-color: #21b97a;
+  border-radius: 100%;
+  display: inline-block;
+  font-size: 12px;
+  width: 15px;
+  height: 15px;
+  line-height: 15px;
+}

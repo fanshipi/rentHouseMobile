@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import './App.css'
+// 导入字体图标样式
+import './assets/fonts/iconfont.css'
+import './App.css'
+
+// 这个是虚拟化长列表的样式
+import 'react-virtualized/styles.css'
+
+import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
+
+import Home from './views/Home'
+import Login from './views/Login'
+import CityList from './views/CityList'
+import Map from './views/Map'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Router>
+      <div id="app">
+        <Switch>
+          <Route path="/home" component={Home} />
+          <Route path="/login" component={Login} />
+          <Route path="/citylist" component={CityList} />
+          <Route path="/map" component={Map} />
+          <Redirect exact from="/" to="/home" />
+        </Switch>
+      </div>
+    </Router>
+  )
 }
 
-export default App;
+export default App

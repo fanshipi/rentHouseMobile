@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <a href="javascript:void(0)">hello</a>
+    <a href="javascript:void(0)">hello</a>
+    <a href="javascript:void(0)">hello</a>
+    <a href="javascript:void(0)">hello</a>
+    <a href="javascript:void(0)">hello</a>
+    <a href="javascript:void(0)">hello</a>
+    <a href="javascript:void(0)">hello</a>
+    <a href="javascript:void(0)">hello</a>
+    <script>
+        // let a = document.getElementsByTagName('a')
+        // console.log(a.length);
+        // for (var i = 0; i < a.length; i++) {
+        //     (function (i) {
+        //        a[i].addEventListener('click',function(e){
+        //         //    e.preventDefault();
+        //            alert(i)
+        //        })
+        //     })(i)
+        // }
+
+        // let i,a
+        // for(i=0;i<10;i++) {
+        //    (function(i){  a = document.createElement('a');
+        //     a.innerHTML = i+'<br/>';
+        //     a.addEventListener('click',function(e){
+        //         e.preventDefault()
+        //         alert(i)
+        //     })
+        //     document.body.appendChild(a)})(i)
+        // }
+
+        // console.log('------',![]);
+        // console.log([]==false);//true
+        // console.log({}==false);//false
+        // var x = 1;
+        // function fn() {
+        //     y = 2;
+        //     console.log(y);
+        //     var z =3
+        // }
+        // fn()
+        // console.log(x);
+        // console.log(y);
+        // console.log(z);
+
+        // alert(1) 
+        // new Promise((resolve,reject)=>{
+        //     // resolve(3)
+        //     // reject(2)
+        // }).then(x=>{
+        //     alert(x)
+        // }).catch(err=>{
+        //     alert(err)
+        // })
+        // alert(4){}
+
+        // let cat = {
+        //     sound:'meow',
+        //     say:function() {
+        //         alert(this.sound)
+        //     }
+        // }
+        // let catSay = cat.say;
+        // console.log(catSay);
+        // // catSay()//undefined
+        // cat.say()//meow
+        // console.log(catSay.sound);
+
+        // for(var i =1;i<=5;i++) {
+        //     setTimeout(function timer(){
+        //         console.log(i);
+        //     },i*1000)
+        // }
+
+        // function F1() {
+        //     var a = 100;
+        //     return function () {
+        //         console.log(a);
+        //     }
+        // }
+        // var f1 = F1()
+        // function F2(fn) {
+        //     var a = 200;
+        //     fn()
+        // }
+        // F2(f1)
+
+        // console.log(1);
+        // setTimeout(function(){
+        //     console.log(2);
+        // },0)
+        // console.log(3);
+        // setTimeout(function(){
+        //     console.log(4);
+        // },1000)
+        // console.log(5);
+        // 单线程：定时器，发送网络请求，事件绑定
+
+        // 获取2016-06-10格式的日期
+        // function formatDate(dt) {
+        //     if(!dt) {
+        //         dt = new Date()
+        //     }
+        //     var year = dt.getFullYear()
+        //     var month =dt.getMonth() + 1;
+        //     var date = dt.getDate()
+
+        //     if(month < 10) {
+        //         month = '0' +month
+        //     }
+        //     if(date < 10) {
+        //         date = '0'+date
+        //     }
+        //     return year + '-' +month+'-'+date
+        // }
+        // var date = new Date();
+        // var formatDate = formatDate(date);
+        // console.log(formatDate);
+
+        // // 获取随机数，要求是长度一致的字符串格式
+        // var random = Math.random() + '0000000000';
+        // // console.log(random.length);
+        // var random = random.slice(0,10)
+        // // console.log(random.length);
+        // console.log(random);
+
+        // var a = {n:1}
+        // var b = a;
+        // a.x = a = {n:2}
+        // console.log(a.x);
+        // console.log(b.x);
+
+        // var a = {n:1}
+        // var b = a
+        // a = {n:2}
+        // a.x = a
+        // console.log(a.x);
+        // console.log(b.x);
+
+        var a ={n:1}
+        var b =a
+        a = a.x = {n:2}
+        console.log(a.x);
+        console.log(b.x);
+        console.log(a.n);
+        console.log(b.n);
+    </script>
+</body>
+
+</html>
