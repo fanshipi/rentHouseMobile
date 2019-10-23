@@ -73,3 +73,33 @@
     username: Yup.string().required('用户名不能为空').matches(USER_REGEX,'必须为5-8位'),
     password: Yup.string().required('密码不能为空').matches(PASSWORD_REGEX,'必须为6-12位')
     })
+## 个人页面
+### 进入“我的出租”页面，先进行登录判断，Redirects (Auth) https://reacttraining.com/react-router/web/example/auth-workflow，若是没有登录则打回登录页面，再通过props.history.replace(props.location.state.from.pathname)进入“我的出租列表”页面
+代码：
+(App.js) 
+    <AuthRoute path="/rent"><Rent /></AuthRoute>
+(AuthRoute.jsx) 
+    function AuthRoute({ children, ...rest }) {
+      return (
+        <Route
+          {...rest}
+          render={({ location }) => {
+            return isAuthenticated() ? (
+              children
+            ) : (
+              <Redirect
+                to={{
+                  pathname: '/login',
+                  state: { from: location }
+                }}
+              />
+            )
+          }}
+        />
+      )
+  (Login.jsx)
+    if(props.location.state) {
+        props.history.replace(props.location.state.from.pathname)
+      }else {
+        props.history.goBack()
+      }
