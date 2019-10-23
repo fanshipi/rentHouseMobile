@@ -71,8 +71,8 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 # rentHouseMobile
 rentHouse
 1、创建项目
-（1）npx create-react-app 项目名称;
-（2）或者分为两个步骤:npm i create-react-app,create-react-app 项目名称
+（1）npx create-react-app proName;
+（2）or :npm i create-react-app,create-react-app proName
 
 2、遇到的问题
 (1). 箭头函数this为父作用域的this，不是调用时的this
@@ -82,4 +82,15 @@ rentHouse
 3、自定义吸顶组件
 （1）定义一个占位div，高度为0;
 （2）定义一个内容div，高度始终为40px;
->>>>>>> c72fb6303368c05da99ee098408f217ed8087911
+
+    render() {
+        return (
+            <>
+                <div ref={this.placeHolderRef}></div>
+                <div ref={this.contentRef}>{this.props.children}</div>
+            </>
+        )
+    }
+}
+
+通过this.refs.placeHolderRef可以访问到该组件实例，其实就是dom元素节点；通过this.placeHolderRef.current可以观察所打印的数据，获取想要进行操作的数据
