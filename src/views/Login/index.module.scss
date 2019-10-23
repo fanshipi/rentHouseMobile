@@ -1,6 +1,7 @@
 .root {
   height: 100%;
   background-color: #fff;
+  margin-top: 50px;
 }
 
 .navHeader {
@@ -23,7 +24,7 @@
 }
 
 .formItem::after {
-  content: "";
+  content: '';
   position: absolute;
   background-color: #ddd;
   display: block;
@@ -53,7 +54,11 @@
 .input::placeholder {
   color: #c0c0c0;
 }
-
+.fieldInput {
+  height: 100%;
+  width: 100%;
+  border: none;
+}
 .formSubmit {
   margin-top: 27px;
 }

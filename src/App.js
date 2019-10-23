@@ -15,7 +15,7 @@ import CityList from './views/CityList'
 import Map from './views/Map'
 // 房源详细信息
 import Detail from './views/Detail'
-
+import Rent from './views/Rent'
 function App() {
   return (
     <Router>
@@ -26,6 +26,8 @@ function App() {
           <Route path="/citylist" component={CityList} />
           <Route path="/map" component={Map} />
           <Route path="/detail/:id" component={Detail} />
+
+          <Route path="/rent" component={Rent}/>
           <Redirect exact from="/" to="/home" />
         </Switch>
       </div>
