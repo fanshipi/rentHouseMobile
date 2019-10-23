@@ -16,6 +16,7 @@ import Map from './views/Map'
 // 房源详细信息
 import Detail from './views/Detail'
 import Rent from './views/Rent'
+import AuthRoute from './components/AuthRoute'
 function App() {
   return (
     <Router>
@@ -26,8 +27,11 @@ function App() {
           <Route path="/citylist" component={CityList} />
           <Route path="/map" component={Map} />
           <Route path="/detail/:id" component={Detail} />
+          {/* 权限跳转---导航路由 */}
+          <AuthRoute path="/rent">
+            <Rent />
+          </AuthRoute>
 
-          <Route path="/rent" component={Rent}/>
           <Redirect exact from="/" to="/home" />
         </Switch>
       </div>

@@ -6,3 +6,10 @@ export const setToken = (token) => {
 export const getToken = () =>{
     return window.localStorage.getItem(KEY)
 }
+export const isAuthenticated = ()=>{
+    return getToken()
+}
+
+export const deleteToken = ()=>{
+    window.localStorage.removeItem(KEY)
+}
