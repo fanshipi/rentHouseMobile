@@ -6,7 +6,7 @@
 （2）or :npm i create-react-app,create-react-app proName
 
 ## 遇到的问题
-(1). 箭头函数this为父作用域的this，不是调用时的this
+(1). 获取不到this.state:箭头函数this为父作用域的this，不是调用时的this
 箭头函数的this永远指向其父作用域，任何方法都改变不了，包括call，apply，bind。
 普通函数的this指向调用它的那个对象.
 
