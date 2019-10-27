@@ -60,7 +60,7 @@ export default class Profile extends Component {
             isLogin: false,
             userInfo: {
               avatar:
-                'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2018939532,1617516463&fm=26&gp=0.jpg',
+                '/img/avatar.png',
               nickname: '游客'
             }
           })
@@ -84,19 +84,19 @@ export default class Profile extends Component {
             alt=""
           />
           <div className={styles.info}>
-            {isLogin ? (
-              <>
+            {/* {isLogin ? ( */}
+              {/* <>
                 <img
                   src={`${BASEURL}${avatar}`}
                   className={styles.myIcon}
                   alt=""
                 />
               </>
-            ) : (
-              <img src={avatar} className={styles.myIcon} alt="" />
-            )}
+            ) : ( */}
+              <img src={`${BASEURL}${avatar}`} className={styles.myIcon} alt="" />
+            {/* )} */}
             <div className={styles.user}>
-              <div className={styles.name}>{nickname}</div>
+              <div className={styles.name}>恒客88_105</div>
               {/* 判断是否登录 */}
               {isLogin ? (
                 <>

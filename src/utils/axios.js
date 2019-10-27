@@ -1,7 +1,8 @@
 import React from 'react'
 import axios from 'axios'
 import { BASEURL } from './url'
-import {getToken} from './token'
+import { getToken,deleteToken } from './token'
+
 axios.defaults.baseURL = BASEURL
 console.log(BASEURL)
 
@@ -12,8 +13,8 @@ axios.interceptors.request.use(
   function(config) {
     // 在发送请求之前做些什么
     const token = getToken()
-    if(token) {
-        config.headers.Authorization = token
+    if (token) {
+      config.headers.Authorization = token
     }
     return config
   },
@@ -22,5 +23,18 @@ axios.interceptors.request.use(
     return Promise.reject(error)
   }
 )
-
+// 响应拦截器
+axios.interceptors.response.use(
+  function(response) {
+    // Do something with response data
+    if(response.data.status === 400) {
+      deleteToken()
+    }
+    return response
+  },
+  function(error) {
+    // Do something with response error
+    return Promise.reject(error)
+  }
+)
 export { axios }

@@ -148,13 +148,37 @@
         // console.log(a.x);
         // console.log(b.x);
 
-        var a ={n:1}
-        var b =a
-        a = a.x = {n:2}
-        console.log(a.x);
-        console.log(b.x);
-        console.log(a.n);
-        console.log(b.n);
+        // var a ={n:1}
+        // var b =a
+        // a = a.x = {n:2}
+        // console.log(a.x);
+        // console.log(b.x);
+        // console.log(a.n);
+        // console.log(b.n);
+
+        var arr = [1, 2, 5, 5, 5, 6, 8, 9, 8, 7, 8, 9]
+        var newArr = [];
+        // for(var i = 0;i<arr.length;i++) {
+        //     if(!newArr.includes(arr[i])){
+        //         newArr.push(arr[i])
+        //     }
+        // }
+        // console.log(newArr);
+
+        for (var i = 0; i < arr.length; i++) {
+            let flag = true
+            for (var j = 0; j <= newArr.length; j++) {
+                if (arr[i] === newArr[j]) {
+                   flag = false
+                   break
+                }
+            }
+            if(flag == true) {
+                newArr.push(arr[i])
+            }
+            
+        }
+        console.log(newArr);
     </script>
 </body>
 

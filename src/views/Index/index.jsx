@@ -30,7 +30,7 @@ export default class Index extends Component {
     { icon: image1, text: '整租', path: '/home/list' },
     { icon: image2, text: '合租', path: '/home/list' },
     { icon: image3, text: '地图找房', path: '/map' },
-    { icon: image4, text: '去租房', path: '/rent/ass' }
+    { icon: image4, text: '去租房', path: '/rent/add' }
   ]
   componentDidMount() {
     //   请求接口

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import styles from './index.module.scss'
 import PropTypes from 'prop-types'
+import classNames from 'classnames'
 // 所有房屋配置项
 const HOUSE_PACKAGE = [
   {
@@ -56,16 +57,35 @@ const HOUSE_PACKAGE = [
 ]
 
 class HousePackage extends Component {
+  state  ={
+    selectedValue:[]
+  }
+  toggleSelect = (value) =>　{
+    if(!this.props.select) return 
+    let newSelect = [...this.state.selectedValue]
+    if(newSelect.includes(value)) {
+      newSelect = newSelect.filter(item=>item.id!== value.id)
+    }else {
+      newSelect.push(value)
+    }
+    this.setState({
+      selectedValue:newSelect
+    },()=>{
+      this.props.onSelect && this.props.onSelect(this.state.selectedValue)
+    })
+  }
   renderItem = () => {
     let data = null
     if (this.props.list) {
       data = HOUSE_PACKAGE.filter(item => this.props.list.includes(item.name))
+    }else {
+      data = HOUSE_PACKAGE
     }
     return data.map(item => {
       return (
-        <li className={styles.item} key={item.id}>
+        <li className={classNames(styles.item,{[styles.active]:this.state.selectedValue.includes(item)})} key={item.id}>
           <p>
-            <i className={`iconfont ${item.icon} ${styles.icon}`}></i>
+            <i className={`iconfont ${item.icon} ${styles.icon}`} onClick={()=>this.toggleSelect(item)}></i>
           </p>
           {item.name}
         </li>

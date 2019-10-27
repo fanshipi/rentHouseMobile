@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import styles from './index.module.scss'
 import NavHeader from '../../components/NavHeader'
-import { Carousel, Flex } from 'antd-mobile'
+import { Carousel, Flex, Toast, Modal } from 'antd-mobile'
 import { BASEURL } from '../../utils/url'
 import classNames from 'classnames'
 import HousePackage from '../../components/HousePackage'
 import HouseItem from '../../components/HouseItem'
+import { getToken } from '../../utils/token'
+const alert = Modal.alert;
 let BMap = window.BMap
 
 const recommendHouses = [
@@ -43,6 +45,7 @@ export default class Detail extends Component {
     super()
     this.state = {
       imgHeight: 176,
+      isFavorite: false,
       houseDetailInfo: {
         community: '',
         oriented: []
@@ -52,7 +55,10 @@ export default class Detail extends Component {
   componentDidMount() {
     // Carouser
     this.getHouseInfoCarouser()
+    // getIsFavoriteStatus
+    this.getIsFavoriteStatus()
   }
+
   // 获取轮播图
   getHouseInfoCarouser = async () => {
     // console.log(this.props);
@@ -266,25 +272,93 @@ export default class Detail extends Component {
       <div className={styles.recommend}>
         <div className={styles.houseTitle}>猜你喜欢</div>
         <div className={styles.items}>
-          {recommendHouses.map(item=>{
-            return <HouseItem key={item.houseCode} {...item}/>
+          {recommendHouses.map(item => {
+            return <HouseItem key={item.houseCode} {...item} />
           })}
         </div>
       </div>
     )
   }
+  // 将修改的isFavorite保存到服务器
+  getIsFavoriteStatus = async () => {
+    let res = await this.$axios.get(`/user/favorites/${this.props.match.params.id}`)
+    console.log(res);
+    
+    if(res.data.status === 200) {
+      this.setState({
+        isFavorite:res.data.body.isFavorite
+      })
+    }
+    
+  }
+  // 收藏与取消收藏
+  toggleFavorite = async () => {
+    // 先判断是否登录，登录了，就会去执行收藏与取消收藏，没有登录，提示进入登录页面
+    if (!getToken()) {
+      alert('提示', '登录后才能进行操作，是否去登录', [
+        { text: '取消', onPress: () => {} },
+        {
+          text: '确定',
+          onPress: () =>
+            this.props.history.push('/login')
+        }
+      ])
+      return
+    }
+    const {isFavorite} =  this.state
+    
+    // 如果之前是收藏的，则取消收藏，如果之前是没有收藏的，就添加收藏
+    if(isFavorite) {
+      const res = await this.$axios.delete(`/user/favorites/${this.props.match.params.id}`)
+      // console.log(res)
+      if(res.data.status === 200) {
+        Toast.info('取消收藏成功')
+      }
+    }else {
+      const res = await this.$axios.post(`/user/favorites/${this.props.match.params.id}`)
+      // console.log(res);
+      if(res.data.status === 200) {
+        Toast.info('收藏成功')
+      }
+    }
+    this.setState({
+      isFavorite:!isFavorite
+    })
+  }
   // 渲染底部
-  renderFooter = () =>{
-    return (<Flex className={styles.fixedBottom}>
-      <Flex.Item>
-        <img src="http://localhost:8080/img/unstar.png" alt="收藏" className={styles.favoriteImg} />
-        <span className={styles.favorite}>收藏</span>
-      </Flex.Item>
-      <Flex.Item>在线咨询</Flex.Item>
-      <Flex.Item>
-        <a href="tel:18688888888" className={styles.telephone}>电话预约</a>
-      </Flex.Item>
-    </Flex>)
+  renderFooter = () => {
+    const { isFavorite } = this.state
+    return (
+      <Flex className={styles.fixedBottom}>
+        <Flex.Item onClick={this.toggleFavorite}>
+          {isFavorite ? (
+            <>
+              <img
+                src="http://localhost:8080/img/star.png"
+                alt="收藏"
+                className={styles.favoriteImg}
+              />
+              <span className={styles.favorite}>取消收藏</span>
+            </>
+          ) : (
+            <>
+              <img
+                src="http://localhost:8080/img/unstar.png"
+                alt="收藏"
+                className={styles.favoriteImg}
+              />
+              <span className={styles.favorite}>收藏</span>
+            </>
+          )}
+        </Flex.Item>
+        <Flex.Item>在线咨询</Flex.Item>
+        <Flex.Item>
+          <a href="tel:18688888888" className={styles.telephone}>
+            电话预约
+          </a>
+        </Flex.Item>
+      </Flex>
+    )
   }
   //   渲染房源title，desc,price,tags
   render() {
